@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        button#lang {
+            background: #317EF3;
+            border-color: #317EF3;
+            border: 1px solid #317EF3;
+            color: #fff;
+            font-size: 24px;
+            width: 296px;
+            height: 80px;
+            line-height: 80px;
+            margin-right: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <button id="lang">切换语言</button>
+        <div class="box">
+            中文巴拉巴拉
+        </div>
+        <div class="box">
+            英文巴拉巴拉
+        </div>
+        <div class="box">
+            法文巴拉巴拉
+        </div>
+        <div class="box">
+            德文巴拉巴拉
+        </div>
+    </div>
+</body>
+<script>
+
+    const tabBtn = document.querySelector('#lang');
+    const tab = document.querySelectorAll('.box');
+
+    function Tab(tabBtn, event, tabList, stateType) {
+        let currentStateIndex = 0;
+        for(let i=0; i<tabList.length; i++) {
+            tabBtn.parentNode.removeChild(tabList[i]);
+        }
+        tabBtn.parentNode.appendChild(tabList[0]);
+        tabBtn.addEventListener(event, function (ev) {
+            tabBtn.parentNode.removeChild(tabList[currentStateIndex++ % tabList.length]);
+            tabBtn.parentNode.appendChild(tabList[currentStateIndex++ % tabList.length]);
+            currentStateIndex+=tabList.length-1;
+        })
+    }
+
+    Tab(tabBtn, 'click', tab);     // 触发元素，触发机制，控制元素
+</script>
+
+</html>
